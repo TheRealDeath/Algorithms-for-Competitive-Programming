@@ -18,10 +18,8 @@ public class ParallelPrimeSieve
 				for(int i = s;i<lim;i+=(p2+p1)) composite[i] = true;
 				for(int i = s+s2;i<lim;i+=(p2+p1)) composite[i] = true;
 				tog = !tog;
-				if(tog)
-					s += d2, d1 += 16, p1 += 2, p2 += 2, s2 = p2;
-				else
-					s += d1, d2 += 8, p1 += 2, p2 += 6, s2 = p1;
+				if(tog) {s += d2; d1 += 16; p1 += 2; p2 += 2; s2 = p2;}
+				else {s += d1; d2 += 8; p1 += 2; p2 += 6; s2 = p1;}
 			}
 		}
 		int k = 0;
@@ -29,8 +27,7 @@ public class ParallelPrimeSieve
 		tog = false;
 		while(p <= n)
 		{
-			if(!composite[k]) primes.add(p);
-			k += 1;
+			if(!composite[k++]) primes.add(p);
 			tog = !tog;
 			p += tog ? 2 : 4;
 		}
